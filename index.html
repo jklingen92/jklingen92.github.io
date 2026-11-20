@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jake Klingensmith</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #666666;
+    }
+    /* Follow the visitor's OS theme */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --fg: #e6e6e6;
+        --muted: #999999;
+      }
+    }
+    body {
+      margin: 0 auto;
+      max-width: 40rem;
+      padding: 3rem 1rem;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    .bio { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>Jake Klingensmith</h1>
+  <!-- TODO: bio -->
+  <p class="bio">Bio goes here.</p>
+</body>
+</html>
