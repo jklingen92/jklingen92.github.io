@@ -9,6 +9,8 @@
       --bg: #ffffff;
       --fg: #1a1a1a;
       --muted: #666666;
+      --rule: #dddddd;
+      --link: #1a4fb3;
     }
     /* Follow the visitor's OS theme */
     @media (prefers-color-scheme: dark) {
@@ -16,6 +18,8 @@
         --bg: #121212;
         --fg: #e6e6e6;
         --muted: #999999;
+        --rule: #333333;
+        --link: #8ab4f8;
       }
     }
     body {
@@ -27,12 +31,118 @@
       font-family: system-ui, sans-serif;
       line-height: 1.6;
     }
-    .bio { color: var(--muted); }
+    a { color: var(--link); }
+    .bio, .meta { color: var(--muted); }
+    .meta { font-size: 0.9rem; }
+    h2 {
+      margin-top: 3rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    h3 { margin-bottom: 0.25rem; }
+    ul { padding-left: 0; list-style: none; }
+    li { margin-bottom: 1rem; }
+    figure { margin: 1rem 0; }
+    figure img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--rule);
+    }
+    figcaption { color: var(--muted); font-size: 0.9rem; }
+    /* Keep the splat at 16:10 at any width instead of a fixed 800x500 */
+    .embed {
+      position: relative;
+      aspect-ratio: 16 / 10;
+    }
+    .embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
   </style>
 </head>
 <body>
   <h1>Jake Klingensmith</h1>
   <!-- TODO: bio -->
-  <p class="bio">Bio goes here.</p>
+  <p class="bio">
+    Jake Klingensmith is a computational investigative journalist. 
+    He uses computer vision and machine learning to build investigative tools 
+    to help journalists handle the evergrowing sea of data on the internet.
+  </p>
+
+  <section id="writing">
+    <h2>Writing</h2>
+
+    <h3>CS Indie</h3>
+    <ul>
+      <li>
+        <a href="https://csindie.com/shotspotter-gunfire-tech-is-restored-for-90-days-as-cambridge-turns-to-new-resident-assembly-for-answers/">ShotSpotter gunfire tech is restored for 90 days as Cambridge turns to new resident assembly for answers</a>
+      </li>
+      <li>
+        <a href="https://csindie.com/shotspotter-didnt-hear-the-gunfire-that-killed-a-man-in-central-square-first-incident-since-reactivation-police-say/">ShotSpotter didn't hear the gunfire that killed a man in Central Square, first incident since reactivation, police say</a>
+      </li>
+      <li>
+        <a href="https://csindie.com/cambridge-police-are-investigating-an-officer-involved-shooting-in-central-square/">Cambridge police are investigating an officer-involved shooting in Central Square</a>
+      </li>
+    </ul>
+
+    <h3>School work</h3>
+    <ul>
+      <li>
+        <a href="https://medium.com/secret-structures/pittsburghs-last-newspaper-9fc2c405f6f3">Pittsburgh's Last Newspaper</a>
+        <div class="meta">Secret Structures (Medium)</div>
+      </li>
+      <li>
+        <a href="https://ronkonkomalighthouse.substack.com/p/the-cuba-exception-how-radio-marti">The Cuba Exception</a>
+        <div class="meta">Ronkonkoma Lighthouse (Substack)</div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="computational">
+    <h2>Computational</h2>
+
+    <h3>Grime</h3>
+    <p>
+      An archival document management platform: a Django app for ingesting
+      scanned documents, running OCR and NER pipelines, and annotating pages
+      with tagged regions.
+      <a href="https://github.com/jklingen92/grime">Source on GitHub</a>.
+    </p>
+    <!-- TODO: link the browser-only demo once it exists -->
+
+    <h3>America First Warehouse transcript search</h3>
+    <p>
+      A search tool over transcripts of the America First Warehouse's shows,
+      blending exact-word and semantic matching, with filters by show,
+      episode and date.
+    </p>
+    <figure>
+      <img src="img/warehouse/search.png" alt="Transcript search results for a name, with matched words highlighted in passages and episode summaries" loading="lazy">
+      <figcaption>Search across episodes, filtered by show and date range.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/warehouse/transcript.png" alt="A timestamped episode transcript with a find-in-transcript box" loading="lazy">
+      <figcaption>Timestamped transcript view with in-page find.</figcaption>
+    </figure>
+
+    <!-- TODO: title and caption for the splat -->
+    <h3>Gaussian splat</h3>
+    <div class="embed">
+      <iframe id="viewer" allow="fullscreen; xr-spatial-tracking" src="https://superspl.at/s?id=f96f8ae0" title="Gaussian splat viewer" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <ul>
+      <li>
+        <a href="docs/rail-monitoring.pdf">Monitoring Hazardous Rail Traffic Using Visual Sensors</a>
+        <div class="meta">PDF, 12.9 MB</div>
+      </li>
+    </ul>
+  </section>
 </body>
 </html>
