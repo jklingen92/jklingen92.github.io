@@ -49,6 +49,28 @@
       border: 1px solid var(--rule);
     }
     figcaption { color: var(--muted); font-size: 0.9rem; }
+    figure img { cursor: zoom-in; }
+    /* Click-to-zoom overlay; native <dialog> gives Esc-to-close and focus handling */
+    #zoom {
+      max-width: none;
+      max-height: none;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-out;
+    }
+    #zoom::backdrop { background: rgba(0, 0, 0, 0.85); }
+    #zoom img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
     /* Keep the splat at 16:10 at any width instead of a fixed 800x500 */
     .embed {
       position: relative;
@@ -144,5 +166,22 @@
       </li>
     </ul>
   </section>
+
+  <dialog id="zoom" aria-label="Enlarged image">
+    <img alt="">
+  </dialog>
+  <script>
+    // Open any figure image full-screen; click anywhere or press Esc to close.
+    const zoom = document.getElementById('zoom');
+    const zoomImg = zoom.querySelector('img');
+    document.querySelectorAll('figure img').forEach(img => {
+      img.addEventListener('click', () => {
+        zoomImg.src = img.src;
+        zoomImg.alt = img.alt;
+        zoom.showModal();
+      });
+    });
+    zoom.addEventListener('click', () => zoom.close());
+  </script>
 </body>
 </html>
